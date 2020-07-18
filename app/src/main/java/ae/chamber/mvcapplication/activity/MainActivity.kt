@@ -6,13 +6,13 @@ import ae.chamber.mvcapplication.model.ResponseAPI
 import ae.chamber.mvcapplication.model.Result
 import ae.chamber.mvcapplication.network.Api
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -22,12 +22,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
+class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     var articleList = ArrayList<Result>()
-    var adapter : ArticleAdapter? = null
+    var adapter: ArticleAdapter? = null
 
     var articleRcv: RecyclerView? = null
-    var drawerLayout: DrawerLayout?= null
+    var drawerLayout: DrawerLayout? = null
     val context: Context = this@MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
         articleRcv = findViewById(R.id.articleRcv)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        adapter = ArticleAdapter(this,articleList)
+        adapter = ArticleAdapter(this, articleList)
         articleRcv?.let {
             articleRcv!!.adapter = adapter
         }
@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
             this,
             drawerLayout, toolbar,
             R.string.open,
-            R.string.close)
+            R.string.close
+        )
 
         drawerLayout?.addDrawerListener(toggle)
         toggle.isDrawerIndicatorEnabled = true
@@ -69,14 +70,14 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.filterDay->{
+        when (item.itemId) {
+            R.id.filterDay -> {
                 getData(time = 1)
             }
-            R.id.filterWeek->{
+            R.id.filterWeek -> {
                 getData(time = 7)
             }
-            R.id.filterMonth->{
+            R.id.filterMonth -> {
                 getData(time = 30)
             }
         }
@@ -104,30 +105,22 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
     }
 
 
-
-    private fun getData(time:Int) {
+    private fun getData(time: Int) {
         try {
             showRcvProgress(true)
             val service = Api.urlApiService
-            val call: Call<ResponseAPI> =
-                service.getArticles("all-sections", time, getString(R.string.ny_value))
+            val call: Call<ResponseAPI> = service.getArticles("all-sections", time, getString(R.string.ny_value))
             call.enqueue(object : Callback<ResponseAPI> {
                 override fun onResponse(call: Call<ResponseAPI>, response: Response<ResponseAPI>) {
                     try {
                         showRcvProgress(false)
-                        if (response.code() == 200 || response.code()==201) {
+                        if (response.code() == 200 || response.code() == 201) {
                             val result = response.body()
-
                             var list = result?.results
                             list?.let {
-                                for(item in list){
-                                    articleList.add(item)
-                                }
-                                adapter?.notifyDataSetChanged()
+                                setAadapter(list)
                             }
-
-
-                        }else {
+                        } else {
                             showToast(getString(R.string.error))
                         }
                     } catch (e: Exception) {
@@ -135,6 +128,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
                         showToast(getString(R.string.error))
                     }
                 }
+
                 override fun onFailure(call: Call<ResponseAPI>, t: Throwable) {
                     showRcvProgress(false)
                     showToast(getString(R.string.error))
@@ -143,18 +137,26 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
         } catch (e: Exception) {
             showRcvProgress(false)
             e.printStackTrace()
-            showToast( getString(R.string.error))
+            showToast(getString(R.string.error))
         }
     }
 
-    fun showToast(message :String){
-        Toast.makeText(this,message, Toast.LENGTH_LONG).show()
+    private fun setAadapter(list: List<Result>) {
+        for (item in list) {
+            articleList.add(item)
+        }
+        adapter?.notifyDataSetChanged()
+
     }
 
-    fun showRcvProgress(isShow:Boolean){
-        if(isShow){
+    fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    fun showRcvProgress(isShow: Boolean) {
+        if (isShow) {
             progrecc_rcv.visibility = View.VISIBLE
-        }else{
+        } else {
             progrecc_rcv.visibility = View.GONE
         }
     }
