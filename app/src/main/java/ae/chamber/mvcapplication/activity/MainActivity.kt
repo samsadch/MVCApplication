@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.net.URL
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     var articleList = ArrayList<Result>()
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     var articleRcv: RecyclerView? = null
     var drawerLayout: DrawerLayout? = null
     val context: Context = this@MainActivity
+
+    companion object{
+        const val URL = "URL"
+        const val DETAIL = "DETAIL"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

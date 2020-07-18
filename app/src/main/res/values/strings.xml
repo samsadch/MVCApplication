@@ -13,4 +13,7 @@
 
     <string name="ny_value">mEWJG6smz7nLYFhre9kgoOLfgQ3ulBAM</string>
     <string name="error">Error While connecting to server</string>
+    <string name="app_item_detail_name">Article Details</string>
+    <string name="sample_popular_article">Sample Popular Article</string>
+    <string name="sampl_email_com">sampl@email.com</string>
 </resources>
