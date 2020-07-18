@@ -30,15 +30,17 @@ class ArticleDetailActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         mToolbar?.setNavigationOnClickListener { finish() }
 
+        getIntentData()
 
-        // get data from previous activity
+    }
+
+    fun getIntentData(){
         val i = intent
         if (i != null) {
             val detail = i.getStringExtra(MainActivity.DETAIL)
             url = i.getStringExtra(MainActivity.URL)
             itemDetail?.text = detail
         }
-
     }
 
     fun fabClick(view: View?) {

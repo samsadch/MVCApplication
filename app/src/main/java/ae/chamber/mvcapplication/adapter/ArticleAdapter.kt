@@ -2,12 +2,10 @@ package ae.chamber.mvcapplication.adapter
 
 import ae.chamber.mvcapplication.R
 import ae.chamber.mvcapplication.activity.ArticleDetailActivity
-import ae.chamber.mvcapplication.activity.DetailActivity
 import ae.chamber.mvcapplication.activity.MainActivity
 import ae.chamber.mvcapplication.model.Result
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +41,20 @@ class ArticleAdapter(private val context: Context, var list: ArrayList<Result>) 
         holder.dateTxv.text = item.published_date
         holder.sourceTxv.text = item.source
 
+        setThumbImage(item,holder)
+
+        holder.bodyCons.setOnClickListener {
+            val intent = Intent(context, ArticleDetailActivity::class.java)
+            intent.putExtra(MainActivity.URL,item.url)
+            intent.putExtra(MainActivity.DETAIL,item.abstract)
+            context.startActivity(intent)
+        }
+    }
+
+    private fun setThumbImage(
+        item: Result,
+        holder: VieHolder
+    ) {
         try {
             val imageUrl = item.media[0]
             Picasso.get()
@@ -50,13 +62,6 @@ class ArticleAdapter(private val context: Context, var list: ArrayList<Result>) 
                 .into(holder.profileImage)
         } catch (e: Exception) {
             e.printStackTrace()
-        }
-
-        holder.bodyCons.setOnClickListener {
-            val intent = Intent(context, ArticleDetailActivity::class.java)
-            intent.putExtra(MainActivity.URL,item.url)
-            intent.putExtra(MainActivity.DETAIL,item.abstract)
-            context.startActivity(intent)
         }
     }
 
