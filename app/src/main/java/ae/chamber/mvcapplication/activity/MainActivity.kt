@@ -1,5 +1,6 @@
-package ae.chamber.mvcapplication
+package ae.chamber.mvcapplication.activity
 
+import ae.chamber.mvcapplication.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
