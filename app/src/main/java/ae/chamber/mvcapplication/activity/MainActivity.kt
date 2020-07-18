@@ -2,11 +2,9 @@ package ae.chamber.mvcapplication.activity
 
 import ae.chamber.mvcapplication.R
 import ae.chamber.mvcapplication.adapter.ArticleAdapter
-import ae.chamber.mvcapplication.model.ModelResult
-import ae.chamber.mvcapplication.model.ResponseModel
+import ae.chamber.mvcapplication.model.ResponseAPI
+import ae.chamber.mvcapplication.model.Result
 import ae.chamber.mvcapplication.network.Api
-import ae.chamber.mvcapplication.network.NYAPI
-import ae.chamber.mvcapplication.utils.GsonUtil
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,16 +16,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.SearchView
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
-    var articleList = ArrayList<ModelResult>()
+    var articleList = ArrayList<Result>()
     var adapter : ArticleAdapter? = null
 
     var articleRcv: RecyclerView? = null
@@ -73,8 +69,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when(id){
+        when(item.itemId){
             R.id.filterDay->{
                 getData(time = 1)
             }
@@ -99,7 +94,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
     }
 
     private fun filter(text: String) {
-        val temp = ArrayList<ModelResult>()
+        val temp = ArrayList<Result>()
         for (item in articleList) {
             if (item.title.toLowerCase().contains(text.toLowerCase())) {
                 temp.add(item)
@@ -114,21 +109,23 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
         try {
             showRcvProgress(true)
             val service = Api.urlApiService
-            val call: Call<JsonObject> =
+            val call: Call<ResponseAPI> =
                 service.getArticles("all-sections", time, getString(R.string.ny_value))
-            call.enqueue(object : Callback<JsonObject> {
-                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+            call.enqueue(object : Callback<ResponseAPI> {
+                override fun onResponse(call: Call<ResponseAPI>, response: Response<ResponseAPI>) {
                     try {
                         showRcvProgress(false)
                         if (response.code() == 200 || response.code()==201) {
-                            val responseobj = response.body().toString()
-                            val obj : JSONObject = JSONObject(responseobj)
-                            val model: ResponseModel = GsonUtil.getInstance().gsonToResponseModel(obj)
-                            var list = model.results as ArrayList<ModelResult>
-                            for(item in list){
-                                articleList.add(item)
+                            val result = response.body()
+
+                            var list = result?.results
+                            list?.let {
+                                for(item in list){
+                                    articleList.add(item)
+                                }
+                                adapter?.notifyDataSetChanged()
                             }
-                            adapter?.notifyDataSetChanged()
+
 
                         }else {
                             showToast(getString(R.string.error))
@@ -138,7 +135,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
                         showToast(getString(R.string.error))
                     }
                 }
-                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                override fun onFailure(call: Call<ResponseAPI>, t: Throwable) {
                     showRcvProgress(false)
                     showToast(getString(R.string.error))
                 }

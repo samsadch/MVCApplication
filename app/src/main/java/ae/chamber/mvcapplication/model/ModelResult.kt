@@ -1,7 +1,6 @@
 package ae.chamber.mvcapplication.model
 
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -14,7 +13,7 @@ data class ModelResult(
     val des_facet: List<String>,
     //val geo_facet: List<String>,
     val id: Long,
-    val media: List<Media>,
+    //val media: List<Media>,
     //val org_facet: List<String?>?,
     //val per_facet: List<String>,
     val published_date: String,
@@ -28,6 +27,7 @@ data class ModelResult(
 
 
 
+/*
 @Parcelize
 data class Media(
     val approved_for_syndication: Int,
@@ -44,4 +44,4 @@ data class MediaMetadata(
     val height: Int,
     val url: String,
     val width: Int
-):Parcelable
+):Parcelable*/

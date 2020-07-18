@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
-import ae.chamber.mvcapplication.model.ResponseModel;
+import ae.chamber.mvcapplication.model.ResponseAPI;
 
 public class GsonUtil<T> {
 
@@ -16,13 +16,14 @@ public class GsonUtil<T> {
             gson = new GsonUtil();
         return gson;
     }
-    public ResponseModel gsonToResponseModel(JSONObject json) {
 
-        ResponseModel model = null;
+    public ResponseAPI gsonToResponseAPI(JSONObject json) {
+
+        ResponseAPI model = null;
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonString =  json.toString();
-            model = gson.fromJson(jsonString, ResponseModel.class);
+            model = gson.fromJson(jsonString, ResponseAPI.class);
         } catch (Exception e){
             e.printStackTrace();
         }
