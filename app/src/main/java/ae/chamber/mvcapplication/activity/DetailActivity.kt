@@ -1,11 +1,12 @@
 package ae.chamber.mvcapplication.activity
 
 import ae.chamber.mvcapplication.R
-import ae.chamber.mvcapplication.model.ModelResult
+import ae.chamber.mvcapplication.model.Result
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 
 
@@ -13,20 +14,20 @@ class DetailActivity : AppCompatActivity() {
 
     lateinit var toolbar: Toolbar
 
-    lateinit var resultData: ModelResult
+    lateinit var resultData: Result
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        resultData = intent.getParcelableExtra("DATA") as ModelResult
+        resultData = intent.getParcelableExtra("DATA") as Result
         initViews()
     }
 
     private fun initViews() {
         try {
-            /*Picasso.get()
+            Picasso.get()
                 .load(resultData.media[0].mediaMetadata[0].url)
-                .into(detail_image)*/
+                .into(detail_image)
 
             toolbar = findViewById(R.id.toolbar)
             setSupportActionBar(toolbar)
@@ -36,7 +37,8 @@ class DetailActivity : AppCompatActivity() {
             att_text.text = resultData.abstract
 
             /*ic_share.setOnClickListener {
-
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
+                context.startActivity(browserIntent)
             }*/
 
             toolbar.setNavigationOnClickListener {

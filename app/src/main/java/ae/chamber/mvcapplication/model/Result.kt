@@ -1,11 +1,15 @@
 package ae.chamber.mvcapplication.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Result(
     val abstract: String,
     val adx_keywords: String,
     val asset_id: Long,
     val byline: String,
-    val column: Any,
+    val column: String?,
     val des_facet: List<String>,
     val eta_id: Int,
     val geo_facet: List<String>,
@@ -23,4 +27,4 @@ data class Result(
     val updated: String,
     val uri: String,
     val url: String
-)
+):Parcelable

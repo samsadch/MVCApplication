@@ -1,6 +1,7 @@
 package ae.chamber.mvcapplication.adapter
 
 import ae.chamber.mvcapplication.R
+import ae.chamber.mvcapplication.activity.DetailActivity
 import ae.chamber.mvcapplication.model.Result
 import android.content.Context
 import android.content.Intent
@@ -50,12 +51,9 @@ class ArticleAdapter(private val context: Context, var list: ArrayList<Result>) 
         }
 
         holder.bodyCons.setOnClickListener {
-            /*val intent = Intent(context, DetailActivity::class.java)
+            val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("DATA",item)
-            context.startActivity(intent)*/
-
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.url))
-            context.startActivity(browserIntent)
+            context.startActivity(intent)
         }
     }
 
