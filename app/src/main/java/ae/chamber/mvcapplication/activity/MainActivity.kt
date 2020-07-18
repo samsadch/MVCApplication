@@ -5,6 +5,7 @@ import ae.chamber.mvcapplication.adapter.ArticleAdapter
 import ae.chamber.mvcapplication.model.ResponseAPI
 import ae.chamber.mvcapplication.model.Result
 import ae.chamber.mvcapplication.network.Api
+import ae.chamber.mvcapplication.utils.getFilteredData
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
@@ -21,7 +22,6 @@ import kotlinx.android.synthetic.main.content_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.net.URL
 
 class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     var articleList = ArrayList<Result>()
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     var drawerLayout: DrawerLayout? = null
     val context: Context = this@MainActivity
 
-    companion object{
+    companion object {
         const val URL = "URL"
         const val DETAIL = "DETAIL"
     }
@@ -101,13 +101,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     private fun filter(text: String) {
-        val temp = ArrayList<Result>()
-        for (item in articleList) {
-            if (item.title.toLowerCase().contains(text.toLowerCase())) {
-                temp.add(item)
-            }
-        }
-        adapter?.updateList(temp)
+        adapter?.updateList(
+            getFilteredData(
+                text,
+                articleList
+            )
+        )
     }
 
 
@@ -115,7 +114,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         try {
             showRcvProgress(true)
             val service = Api.urlApiService
-            val call: Call<ResponseAPI> = service.getArticles("all-sections", time, getString(R.string.ny_value))
+            val call: Call<ResponseAPI> =
+                service.getArticles("all-sections", time, getString(R.string.ny_value))
             call.enqueue(object : Callback<ResponseAPI> {
                 override fun onResponse(call: Call<ResponseAPI>, response: Response<ResponseAPI>) {
                     try {
