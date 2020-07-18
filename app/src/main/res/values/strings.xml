@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MVCApplication</string>
+    <string name="action_settings">Search</string>
+    <string name="test_name">By DAVID LEONHART anf STUAR A.</string>
+    <string name="thompson_thompson">THOMPSON THOMPSON</string>
+    <string name="date_test">2017-06-23</string>
+    <string name="title_test">Supporters of the Democractic Candidate Jon ossoff after his string manip</string>
+    <string name="right_arrow">right arrow</string>
+    <string name="circle_image">Circle image</string>
 </resources>
