@@ -40,9 +40,8 @@ class ArticleAdapter(val context: Context, var list: ArrayList<ModelResult>) :
         holder.dateTxv.text = item.published_date
         holder.sourceTxv.text = item.source
 
-        val imageUrl = item.media[0]
-
         try {
+            val imageUrl = item.media[0]
             Picasso.get()
                 .load(item.media[0].mediaMetadata[1].url)
                 .into(holder.profileImage)
@@ -70,6 +69,5 @@ class ArticleAdapter(val context: Context, var list: ArrayList<ModelResult>) :
         list = temp
         notifyDataSetChanged()
     }
-
 
 }

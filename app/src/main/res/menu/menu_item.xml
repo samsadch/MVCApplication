@@ -10,7 +10,17 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
     <item android:enabled="true"
-        android:id="@+id/filter"
+        android:id="@+id/filterDay"
         android:iconTint="@android:color/white"
-        android:title="Settings"/>
+        android:title="Popular Today"/>
+
+    <item android:enabled="true"
+        android:id="@+id/filterWeek"
+        android:iconTint="@android:color/white"
+        android:title="Popular By Week"/>
+
+    <item android:enabled="true"
+        android:id="@+id/filterMonth"
+        android:iconTint="@android:color/white"
+        android:title="Popular By Month"/>
 </menu>

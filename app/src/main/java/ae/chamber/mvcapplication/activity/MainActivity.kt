@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
             articleRcv!!.adapter = adapter
         }
 
-        getData()
+        getData(time = 7)
+
         val toggle = ActionBarDrawerToggle(
             this,
             drawerLayout, toolbar,
@@ -73,6 +74,17 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
+        when(id){
+            R.id.filterDay->{
+                getData(time = 1)
+            }
+            R.id.filterWeek->{
+                getData(time = 7)
+            }
+            R.id.filterMonth->{
+                getData(time = 30)
+            }
+        }
         return super.onOptionsItemSelected(item)
     }
 
@@ -98,12 +110,12 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener{
 
 
 
-    private fun getData() {
+    private fun getData(time:Int) {
         try {
             showRcvProgress(true)
             val service = Api.urlApiService
             val call: Call<JsonObject> =
-                service.getArticles("all-sections", 30, getString(R.string.ny_value))
+                service.getArticles("all-sections", time, getString(R.string.ny_value))
             call.enqueue(object : Callback<JsonObject> {
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                     try {
