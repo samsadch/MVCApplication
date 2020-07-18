@@ -7,4 +7,10 @@
     <string name="title_test">Supporters of the Democractic Candidate Jon ossoff after his string manip</string>
     <string name="right_arrow">right arrow</string>
     <string name="circle_image">Circle image</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string name="ny_value">mEWJG6smz7nLYFhre9kgoOLfgQ3ulBAM</string>
+    <string name="error">Error While connecting to server</string>
 </resources>

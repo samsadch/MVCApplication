@@ -25,7 +25,6 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         resultData = intent.getParcelableExtra("DATA") as ModelResult
-
         initViews()
     }
 
@@ -42,10 +41,10 @@ class DetailActivity : AppCompatActivity() {
             detail_header.text = resultData.title
             att_text.text = resultData.abstract
 
-            ic_share.setOnClickListener {
+            /*ic_share.setOnClickListener {
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(resultData.url));
                 startActivity(browserIntent)
-            }
+            }*/
 
             toolbar.setNavigationOnClickListener {
                 finish()

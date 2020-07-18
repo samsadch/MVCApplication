@@ -40,9 +40,15 @@ class ArticleAdapter(val context: Context, var list: ArrayList<ModelResult>) :
         holder.dateTxv.text = item.published_date
         holder.sourceTxv.text = item.source
 
-        Picasso.get()
+        val imageUrl = item.media[0]
+
+        try {
+            Picasso.get()
                 .load(item.media[0].mediaMetadata[1].url)
                 .into(holder.profileImage)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
 
         holder.bodyCons.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java)

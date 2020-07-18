@@ -102,7 +102,7 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+   <!-- <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/ic_share"
         style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
@@ -110,6 +110,6 @@
         android:tint="@android:color/white"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_visit" />
+        app:srcCompat="@drawable/ic_visit" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
