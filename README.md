@@ -12,7 +12,7 @@ Sample App that lists popular Articles from NY Times
 
 ## To Run the Application
 
-you need to add your API key with "api_key" in string.xml file
+***You need to add your API key with "api_key" in string.xml file***
 
 
 ## Installation
@@ -20,7 +20,7 @@ Clone this repository and import into **Android Studio**
  ```bash
 git@github.com:samsadch/MVCApplication.git
 ```
-or
+            OR
 ```bash
 https://github.com/samsadch/MVCApplication.git
 ```
