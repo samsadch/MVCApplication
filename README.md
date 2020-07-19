@@ -4,6 +4,10 @@ Sample App that lists popular Articles from NY Times
 
 ## Screens
 
+![Popular Articles](images/popular.jpg "List of Popular Articles")
+![Article Details](images/detail.jpg "Details for a Article")
+![Search](images/search.jpg "Search from popular article")
+
 <b>Popular article list Screen</b>
 <img src="images/popular.jpg" alt="Popular Article"  width="150" height="250"/>
 
