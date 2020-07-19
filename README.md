@@ -8,6 +8,7 @@ Sample App that lists popular Articles from NY Times
   <img src="images/popular.jpg" width="300" height="600">
   <img src="images/detail.jpg" width="300" height="600">
   <img src="images/search.jpg" width="300" height="600">
+  <img src="images/filter.jpg" width="300" height="600">
 </p>
 
 
@@ -38,6 +39,20 @@ From Android Studio:
 1. ***Build*** menu
 2. ***Generate Signed APK...***
 3. Fill in the keystore information *(you only need to do this once manually and then let Android Studio remember it)*
+
+
+## To Run the Test
+
+* Open *Run* menu | *Edit Configurations*
+    * Add a new *Android Tests* configuration
+    * Choose a module
+    * Choose which tests to run. Click on Test: class and select one of the TestSuites
+    (AndroidTestSuite, UnitTestSuite, InstrumentationTestSuite)
+    * Add a *Specific instrumentation runner*: `androidx.test.runner.AndroidJUnitRunner`
+
+FilterUtilsKtTest.kt contains JUnit4 style unit tests for the Filter logic.
+
+***You need to add your API key with "api_key" in string.xml file***
 
 ## Maintainers
 This project is mantained by:
