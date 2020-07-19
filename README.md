@@ -47,8 +47,6 @@ From Android Studio:
     * Add a new *Android Tests* configuration
     * Choose a module
     * Choose which tests to run. Click on Test: class and select one of the TestSuites
-    (AndroidTestSuite, UnitTestSuite, InstrumentationTestSuite)
-    * Add a *Specific instrumentation runner*: `androidx.test.runner.AndroidJUnitRunner`
 
 FilterUtilsKtTest.kt contains JUnit4 style unit tests for the Filter logic.
 
