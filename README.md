@@ -5,8 +5,9 @@ Sample App that lists popular Articles from NY Times
 ## Screens
 
 <p align="center">
-  <img src="images/popular.jpeg" width="300" height="600">
-  <img src="images/detail.png" width="300" height="600">
+  <img src="images/popular.jpg" width="300" height="600">
+  <img src="images/detail.jpg" width="300" height="600">
+  <img src="images/search.jpg" width="300" height="600">
 </p>
 
 
