@@ -152,7 +152,6 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             articleList.add(item)
         }
         adapter?.notifyDataSetChanged()
-
     }
 
     fun showToast(message: String) {
