@@ -5,10 +5,10 @@ Sample App that lists popular Articles from NY Times
 ## Screens
 
 <b>Popular article list Screen</b>
-<img src="images/popular.jpg" alt="Main article list"  width="150" height="250"/>
+<img src="images/popular.jpg" alt="Popular Article"  width="150" height="250"/>
 
 <b>Details View Screen</b>
-<img src="images/detail.jpg" alt="Details View Screen"  width="150" height="250"/>
+<img src="images/detail.jpg" alt="Article Details"  width="150" height="250"/>
 
 ## To Run the Application
 
