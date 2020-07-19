@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             showRcvProgress(true)
             val service = Api.urlApiService
             val call: Call<ResponseAPI> =
-                service.getArticles("all-sections", time, getString(R.string.ny_value))
+                service.getArticles("all-sections", time, getString(R.string.api_key))
             call.enqueue(object : Callback<ResponseAPI> {
                 override fun onResponse(call: Call<ResponseAPI>, response: Response<ResponseAPI>) {
                     try {

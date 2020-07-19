@@ -12,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ArticleDetailActivity : AppCompatActivity() {
 
+    private var detail: String? = null
     private var itemDetail: TextView? = null
     private var fab: FloatingActionButton? = null
     private var mToolbar: Toolbar? = null
@@ -31,15 +32,15 @@ class ArticleDetailActivity : AppCompatActivity() {
         mToolbar?.setNavigationOnClickListener { finish() }
 
         getIntentData()
+        itemDetail?.text = detail
 
     }
 
     fun getIntentData(){
         val i = intent
         if (i != null) {
-            val detail = i.getStringExtra(MainActivity.DETAIL)
+            detail = i.getStringExtra(MainActivity.DETAIL)
             url = i.getStringExtra(MainActivity.URL)
-            itemDetail?.text = detail
         }
     }
 
